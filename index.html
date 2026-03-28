@@ -5,31 +5,7 @@
     <meta name="referrer" content="strict-origin-when-cross-origin">
     <title>NEEDS | New Era Engineering and Development and Solutions</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-    function toggleChat() {
-        const window = document.getElementById('chat-window');
-        window.classList.toggle('hidden');
-    }
-
-    function sendMsg() {
-        const input = document.getElementById('chat-input');
-        const content = document.getElementById('chat-content');
-        
-        if(input.value.trim() !== "") {
-            // Add User Message
-            content.innerHTML += <p class="bg-gray-200 p-3 rounded-lg text-right ml-8">${input.value}</p>;
-            
-            // Auto-Reply (Simulated AI)
-            setTimeout(() => {
-                content.innerHTML += <p class="bg-orange-100 p-3 rounded-lg text-gray-800 mr-8">Thank you for your interest! A technical expert from the NEEDS team will assist you shortly. For urgent queries, call +91-94331 94783.</p>;
-                content.scrollTop = content.scrollHeight;
-            }, 1000);
-
-            input.value = "";
-            content.scrollTop = content.scrollHeight;
-        }
-    }
-</script>
+    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
        
@@ -408,28 +384,6 @@ counter-box {
             </div>
         </div>
     </section>
-
-<div id="chat-widget" class="fixed bottom-10 left-10 z-[100] font-sans">
-    <button onclick="toggleChat()" class="bg-needs-orange text-white p-4 rounded-full shadow-2xl hover:scale-110 transition">
-        <i class="fas fa-comments text-2xl"></i>
-    </button>
-
-    <div id="chat-window" class="hidden absolute bottom-20 left-0 w-80 bg-white rounded-2xl shadow-2xl border border-gray-200 overflow-hidden">
-        <div class="bg-needs-orange p-4 text-white font-bold flex justify-between">
-            <span>NEEDS Assistant</span>
-            <button onclick="toggleChat()"><i class="fas fa-times"></i></button>
-        </div>
-        <div class="p-4 h-64 overflow-y-auto bg-gray-50 text-sm space-y-4" id="chat-content">
-            <p class="bg-orange-100 p-3 rounded-lg text-gray-800">
-                Hello! Welcome to <strong>NEEDS</strong>. How can I help you with our <strong>Vibro Sifters</strong> or <strong>Ribbon Blenders</strong> today?
-            </p>
-        </div>
-        <div class="p-3 border-t flex">
-            <input type="text" id="chat-input" placeholder="Type your query..." class="flex-grow p-2 text-sm outline-none">
-            <button onclick="sendMsg()" class="text-needs-orange px-2"><i class="fas fa-paper-plane"></i></button>
-        </div>
-    </div>
-</div>
 
    <section id="contact" class="py-20 bg-white">
     <div class="container mx-auto px-6">
