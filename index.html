@@ -196,7 +196,38 @@ counter-box {
     line-height: 1.3;
     font-family: sans-serif; /* Keep labels clean/modern */
 }
+/* Live Status Pulse Light */
+.status-pulse {
+    width: 10px;
+    height: 10px;
+    background-color: #22c55e; /* Industrial Green */
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 8px;
+    position: relative;
+    box-shadow: 0 0 0 rgba(34, 197, 94, 0.4);
+    animation: pulse 2s infinite;
+}
 
+@keyframes pulse {
+    0% {
+        box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.7);
+    }
+    70% {
+        box-shadow: 0 0 0 10px rgba(34, 197, 94, 0);
+    }
+    100% {
+        box-shadow: 0 0 0 0 rgba(34, 197, 94, 0);
+    }
+}
+
+.status-text {
+    font-size: 0.65rem;
+    font-weight: 800;
+    color: #22c55e;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
 
     </style>
 </head>
@@ -294,7 +325,7 @@ counter-box {
         
 
                     <h3 class="text-3xl font-bold mb-3 text-orange-500">Vibro Sifter</h3>
-                    <p class="text-lg text-slate-500 mb-6">High-efficiency circular screening machine, optimized for accurate grading and safety screening of materials.</p>
+                    <p class="text-lg text-slate-500 mb-6">High-efficiency circular screening machine (Gyro Screen), optimized for accurate grading and safety screening of materials.</p>
                     <ul class="text-slate-600 space-y-2 mb-8">
                         <li><i class="fas fa-check text-orange-600 mr-2"></i> NSV-24 Inch to 96 Inch models available</li>
                         <li><i class="fas fa-check text-orange-600 mr-2"></i> Low noise and low maintenance</li>
@@ -475,6 +506,54 @@ counter-box {
     script.src = 'https://api.countapi.xyz/hit/needs-engineering-5years/visits?callback=cb';
     document.head.appendChild(script);
 </script>
+    <section class="py-10 bg-slate-50 border-t border-gray-200">
+    <div class="container mx-auto px-6 text-center">
+        <div class="inline-block bg-white p-6 rounded-2xl shadow-xl border border-slate-200 relative overflow-hidden">
+            
+            <div class="flex items-center justify-center mb-4">
+                <span class="status-pulse"></span>
+                <span class="status-text">Live Global Monitoring: ACTIVE</span>
+            </div>
+
+            <h4 class="text-slate-500 uppercase tracking-widest text-[10px] font-bold mb-4">
+                Engineering Footprint & Client Reach
+            </h4>
+            
+            <div class="flex items-center justify-center space-x-6">
+                <div id="visitor-count" class="text-4xl md:text-5xl font-bold text-orange-500" 
+                     style="font-family: 'Bookman Old Style', serif;">
+                    2,500
+                </div>
+                
+                <div class="text-left border-l-2 border-orange-500 pl-4">
+                    <p class="text-slate-700 font-bold leading-tight">TOTAL INDUSTRIAL<br>ENGAGEMENTS</p>
+                    <p class="text-orange-600 text-[10px] font-black uppercase mt-1">25+ Years Excellence</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+    <script>
+    // 1. Set your base number (Inquiries handled over 25 years)
+    const baseLegacyInquiries = 2500;
+
+    // 2. Function to update the display
+    function updateCounter(response) {
+        const countDisplay = document.getElementById('visitor-count');
+        
+        // Adds live site hits to your 25-year history
+        const totalValue = response.value + baseLegacyInquiries;
+        
+        // Formats with commas (e.g., 2,542) for a professional look
+        countDisplay.innerText = totalValue.toLocaleString();
+    }
+
+    // 3. Connect to the Counter API
+    const counterScript = document.createElement('script');
+    // Using a unique key for NEEDS Engineering
+    counterScript.src = 'https://api.countapi.xyz/hit/needs-solution.com/visits?callback=updateCounter';
+    document.head.appendChild(counterScript);
+</script>
 </body>
 </html>
 <footer class="bg-gray-900 text-gray-400 py-12">
@@ -488,7 +567,7 @@ counter-box {
                 <a href="#" class="hover:text-blue-500"><i class="fab fa-facebook-square"></i></a>
                 <a href="#" class="hover:text-blue-500"><i class="fab fa-twitter"></i></a>
             </div>
-            <p class="text-sm">&copy; 2026 NEEDS. All rights reserved. | Built for Industrial Excellence.</p>
+            <p class="text-sm">&copy; 2026 NEEDS | New Era Engineering and Development and Solutions. All rights reserved. | Built for Industrial Excellence.</p>
         </div>
 <div class="mt-12 text-center">
     <div class="counter-box" style="min-width: 300px; justify-content: center;">
