@@ -582,29 +582,38 @@
         </div>
     </footer>
 <script>
-    // 1. Your historical base number (5 years of inquiries)
-    const baseLegacyInquiries = 2500;
-    
-    // 2. Setup your unique NEEDS tracking keys
-    const namespace = 'needs-engineering';
-    const key = 'homepage-visits';
+    // This tells the script to WAIT until the entire website is drawn on the screen
+    document.addEventListener("DOMContentLoaded", function() {
+        
+        const baseLegacyInquiries = 2500;
+        const namespace = 'needsengineering'; 
+        const key = 'homepage';
+        const countDisplay = document.getElementById('visitor-count');
 
-    // 3. Fetch the live count and update the page
-    fetch(`https://api.counterapi.dev/v1/${namespace}/${key}/up`)
-        .then(response => response.json())
-        .then(data => {
-            const countDisplay = document.getElementById('visitor-count');
-            // Adds the live database hits to your 2,500 base
-            const totalValue = data.count + baseLegacyInquiries;
-            
-            // Formats with commas (e.g., 2,542)
-            countDisplay.innerText = totalValue.toLocaleString();
-        })
-        .catch(error => {
-            console.error('Counter API failed, showing base number:', error);
-            // If the internet connection drops, it safely defaults to your base number
-            document.getElementById('visitor-count').innerText = baseLegacyInquiries.toLocaleString();
-        });
+        // Show a loading text so we know the script is awake
+        if (countDisplay) {
+            countDisplay.innerText = "Loading...";
+        }
+
+        // Try to fetch the live data
+        fetch(`https://api.counterapi.dev/v1/${namespace}/${key}/up`)
+            .then(response => {
+                if (!response.ok) throw new Error("API connection failed");
+                return response.json();
+            })
+            .then(data => {
+                // If successful, do the math and display the live number
+                const totalValue = data.count + baseLegacyInquiries;
+                countDisplay.innerText = totalValue.toLocaleString();
+            })
+            .catch(error => {
+                // If blocked by the browser (because it's a local file) or internet drops, show the base number safely.
+                console.error('Counter API Notice:', error);
+                if (countDisplay) {
+                    countDisplay.innerText = baseLegacyInquiries.toLocaleString();
+                }
+            });
+    });
 </script>
 
 </body>
